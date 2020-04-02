@@ -1,0 +1,191 @@
+{{template "back/layout/header.html" .}}
+<link href="/static/lib/webuploader/0.1.5/webuploader.css" rel="stylesheet" type="text/css" />
+<body>
+<article class="page-container">
+    <form  class="form form-horizontal" id="form-category-add" method="post">
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>分类名称：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" value="" placeholder="" id="category_name" name="category_name">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>分类父级：</label>
+            <div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
+				<select name="pid" class="select">
+					<option value="0">顶级</option>
+                    {{range.category_list}}
+					<option value="{{.CategoryId}}">{{str2html .Htmlstring}}├{{.CategoryName}}</option>
+                    {{end}}
+				</select>
+				</span> </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3">排序：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" autocomplete="off" value=""   name="category_order">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>分类图标：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <div class="uploader-thum-container">
+                    <div id="fileList" class="uploader-list"></div>
+                    <div id="filePicker">选择图片</div>
+                    <input type="hidden" name="category_logo" id="category_logo">
+                </div>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3">状态：</label>
+            <div class="formControls col-xs-8 col-sm-9 skin-minimal">
+                <div class="radio-box">
+                    <input name="category_status" type="radio" value="0" checked>
+                    <label for="sex-1">禁止</label>
+                </div>
+                <div class="radio-box">
+                    <input type="radio"  value="1"name="category_status">
+                    <label for="sex-2">启用</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row cl">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+                <input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+            </div>
+        </div>
+    </form>
+</article>
+{{template "back/layout/footer.html" .}}
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="/static/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
+<script type="text/javascript" src="/static/lib/jquery.validation/1.14.0/validate-methods.js"></script>
+<script type="text/javascript" src="/static/lib/jquery.validation/1.14.0/messages_zh.js"></script>
+<script type="text/javascript" src="/static/lib/webuploader/0.1.5/webuploader.min.js"></script>
+<script>
+    $(function(){
+        $('.skin-minimal input').iCheck({
+            checkboxClass: 'icheckbox-blue',
+            radioClass: 'iradio-blue',
+            increaseArea: '20%'
+        });
+
+        $list = $("#fileList"),
+                $btn = $("#btn-star"),
+                state = "pending",
+                uploader;
+
+        var uploader = WebUploader.create({
+            auto: true,
+            swf: '/static/lib/webuploader/0.1.5/Uploader.swf',
+            // 文件接收服务端。
+            server: '/upload/one',
+            // 选择文件的按钮。可选。
+            // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+            pick: '#filePicker',
+            // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
+            resize: false,
+            // 只允许选择图片文件。
+            accept: {
+                title: 'Images',
+                extensions: 'gif,jpg,jpeg,bmp,png',
+                mimeTypes: 'image/*'
+            }
+        });
+        // 缩略图大小
+                ratio = window.devicePixelRatio || 1,
+                thumbnailWidth = 110 * ratio,
+                thumbnailHeight = 110 * ratio,
+        uploader.on( 'fileQueued', function( file ) {
+            var $li = $(
+                    '<div id="' + file.id + '" class="item">' +
+                    '<div class="pic-box"><img></div>'+
+                    '<div class="info">' + file.name + '</div>' +
+                    '<p class="state">等待上传...</p>'+
+                    '</div>'
+                    ),
+                    $img = $li.find('img');
+                    $list.html( $li );
+
+            // 创建缩略图
+            // 如果为非图片文件，可以不用调用此方法。
+            // thumbnailWidth x thumbnailHeight 为 100 x 100
+            uploader.makeThumb( file, function( error, src ) {
+                if ( error ) {
+                    $img.replaceWith('<span>不能预览</span>');
+                    return;
+                }
+
+                $img.attr( 'src', src );
+            }, thumbnailWidth, thumbnailHeight );
+        });
+        // 文件上传成功，给item添加成功class, 用样式标记上传成功。
+        uploader.on( 'uploadSuccess', function(file,res) {
+            if(res.code==200){
+                var $path ="<input type='hidden' name='category_logo' id='category_logo' value='"+res.data+"'>"
+                $list.append( $path );
+            }
+            $( '#'+file.id ).addClass('upload-state-success').find(".state").text("已上传");
+        });
+
+        // 文件上传失败，显示上传出错。
+        uploader.on( 'uploadError', function( file ) {
+
+            $( '#'+file.id ).addClass('upload-state-error').find(".state").text("上传出错");
+        });
+
+        // 完成上传完了，成功或者失败，先删除进度条。
+        uploader.on( 'uploadComplete', function( file ) {
+            $( '#'+file.id ).find('.progress-box').fadeOut();
+        });
+
+
+
+
+    });
+</script>
+<script>
+    $(function(){
+        $("#form-category-add").validate({
+            rules:{
+                brand_name:{
+                    required:true,
+                },
+                telephone:{
+                    required:true,
+                    isPhone:true,
+                },
+                brand_logo:{
+                    required:true,
+                },
+            },
+            onkeyup:false,
+            focusCleanup:true,
+            success:"valid",
+            submitHandler:function(form){
+                var index = parent.layer.getFrameIndex(window.name);
+                $(form).ajaxSubmit({
+                    type: 'post',
+                    url: "/admin/category/add" ,
+                    success: function(data){
+                        if(data.code==200){
+                            layer.msg('添加成功!',{icon:1,time:3000},function () {
+                                parent.$('.btn-refresh').click();
+                                parent.layer.close(index);
+                            });
+                        }else{
+                            layer.msg('添加失败!',{icon:1,time:3000});
+                        }
+                    },
+                    error: function(XmlHttpRequest, textStatus, errorThrown){
+                        layer.msg('error!',{icon:1,time:3000});
+                    }
+                });
+
+            }
+        });
+    })
+</script>
+</body>
+</html>

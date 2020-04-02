@@ -1,0 +1,142 @@
+{{template "back/layout/header.html" .}}
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 产品管理 <span class="c-gray en">&gt;</span> 品牌管理
+    <a class="btn btn-success radius r" id="btn-refresh" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="page-container">
+    <div class="cl pd-5 bg-1 bk-gray mt-20">
+        <div class=" cl pd-5 bg-1 bk-gray mt-20">
+            <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius">
+            <i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
+        </span>
+            <span class="l pl-5"><a href="javascript:;" onclick="brand_add('添加品牌','/admin/brand/add','800','500')" class="btn btn-secondary radius">
+            <i class="Hui-iconfont">&#xe600;</i> 添加品牌</a>
+        </span>
+        </div>
+
+    <div class="mt-20">
+        <table class="table table-border table-bordered table-bg table-sort">
+            <thead>
+            <tr class="text-c">
+                <th width="25"><input type="checkbox"  value="{{.BrandId}}"></th>
+                <th width="70">ID</th>
+                <th width="40">排序</th>
+                <th width="100">首字母</th>
+                <th width="100">LOGO</th>
+                <th width="120">品牌名称</th>
+                <th width="100">品牌网址</th>
+                <th width="100">联系电话</th>
+                <th width="60">状态</th>
+                <th>具体描述</th>
+                <th width="50">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{range .brands}}
+            <tr class="text-c">
+                <td><input name="delid" type="checkbox" value="{{.BrandId}}"></td>
+                <td>{{.BrandId}}</td>
+                <td>{{.BrandOrder}}</td>
+                <td>{{.BrandSzsx}}</td>
+                <td><img src="/{{.BrandLogo}}" width="100px"></td>
+                <td class="text-l">{{.BrandName}}</td>
+                <td class="text-l">{{.BrandWeb}}</td>
+                <td class="text-l">{{.Telephone}}</td>
+                <td class="text-l">
+                {{if compare .BrandStatus 1}}
+                    <span class="label label-success radius">启用</span>
+                {{else}}
+                    <span class="label  radius">停止</span>
+                {{end}}
+                </td>
+                <td class="text-l">
+                   {{.BrandDesc}}
+                </td>
+                <td class="f-14 product-brand-manage">
+                    <a style="text-decoration:none" onClick="brand_edit('品牌编辑','/admin/brand/edit','{{.BrandId}}')" href="javascript:;" title="编辑">
+                        <i class="Hui-iconfont">&#xe6df;</i>
+                    </a>
+                    <a style="text-decoration:none" class="ml-5" onClick="del_brand(this,{{.BrandId}})" href="javascript:;" title="删除">
+                        <i class="Hui-iconfont">&#xe6e2;</i></a>
+                </td>
+            </tr>
+            {{end}}
+            </tbody>
+        </table>
+    </div>
+</div>
+<!--_footer 作为公共模版分离出去-->
+{{template "back/layout/footer.html" .}}
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="/static/lib/My97DatePicker/4.8/WdatePicker.js"></script>
+<script type="text/javascript" src="/static/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="/static/lib/laypage/1.2/laypage.js"></script>
+<script type="text/javascript">
+    $('.table-sort').dataTable({
+        "bStateSave": true,//状态保存
+        "searching":false,
+        "bLengthChange":false,
+
+    });
+    //添加
+    function brand_add(title,url,w,h){
+        layer_show(title,url,w,h);
+    }
+    //添加
+    function brand_edit(title,url,id,w,h){
+        url=url+"?id="+id
+        layer_show(title,url,w,h);
+    }
+    function del_brand(obj, id) {
+        layer.confirm('品牌删除须谨慎，确认要删除吗？', function (index) {
+            $.ajax({
+                type: 'get',
+                url: '/admin/brand/delete?id='+id,
+                dataType: 'json',
+                success: function (data) {
+                    if(data.code==200){
+                        $(obj).parents("tr").remove();
+                        layer.msg(data.msg, {icon: 1, time: 1000});
+                    }else{
+                        layer.msg(data.msg, {icon: 1, time: 1000});
+                    }
+
+
+                },
+                error: function (data) {
+                    console.log(data.msg);
+                },
+            });
+        });
+    }
+    function datadel(){
+        //获取checkbox值
+        var ids = [];
+        $("input[name='delid']:checked").each(function(i){
+            ids.push($(this).val())
+        })
+        ids.join(",")
+        layer.confirm('品牌删除须谨慎，确认要删除吗？', function (index) {
+            $.ajax({
+                type: 'get',
+                url: '/admin/brand/delall?ids='+ids,
+                dataType: 'json',
+                success: function (data) {
+                    if(data.code==200){
+                        layer.msg(data.msg, {icon: 1, time: 1000});
+                        window.location=location.href
+                    }else{
+                        layer.msg(data.msg, {icon: 1, time: 1000});
+                    }
+
+
+                },
+                error: function (data) {
+                    console.log(data.msg);
+                },
+            });
+        });
+    }
+</script>
+</body>
+</html>
