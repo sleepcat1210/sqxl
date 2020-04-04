@@ -12,17 +12,17 @@ type BaseController struct {
 }
 func(b *BaseController)Finish(){
 	controllerName,actionName:=b.GetControllerAndAction()
-	if filecache.NeedWrite(controllerName,actionName){
+	if filecache.NeedWrite(controllerName,actionName,b.Ctx.Input.Params()){
 		render,err:=b.RenderString()
 		if nil==err && len(render)>0{
-			filecache.Write(controllerName,actionName,&render)
+			filecache.Write(controllerName,actionName,b.Ctx.Input.Params(),&render)
 		}
 	}
 }
 func(b *BaseController)Prepare(){
 controllerName,actionName:=b.GetControllerAndAction()
-if filecache.InCacheList(controllerName,actionName){//如果在队列里
-	contentPtr,err:=filecache.Read(controllerName,actionName)
+if filecache.InCacheList(controllerName,actionName,b.Ctx.Input.Params()){//如果在队列里
+	contentPtr,err:=filecache.Read(controllerName,actionName,b.Ctx.Input.Params())
 	if nil==err && len(*contentPtr)>0{
 		io.WriteString(b.Ctx.ResponseWriter,*contentPtr)
 		b.StopRun()

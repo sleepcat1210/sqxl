@@ -2,13 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="da008e37-7cdd-4b3e-9ec8-0c8a517735a4" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/controllers/AdminControllers/base.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/app.conf" beforeDir="false" afterPath="$PROJECT_DIR$/conf/app.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/AdminControllers/brand.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/AdminControllers/brand.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/AdminControllers/category.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/AdminControllers/category.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/AdminControllers/index.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/AdminControllers/index.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cache/filecache/d40176705ba1db417c17f3fa19c2e71a" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/filecache.conf" beforeDir="false" afterPath="$PROJECT_DIR$/conf/filecache.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/AdminControllers/base.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/AdminControllers/base.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sqlx.exe" beforeDir="false" afterPath="$PROJECT_DIR$/sqlx.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/filecache/filecache.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/filecache/filecache.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,14 +19,59 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="base.go" pinned="false" current-in-tab="true">
+      <file leaf-file-name="base.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/AdminControllers/base.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="248">
-              <caret line="27" column="19" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
+            <state relative-caret-position="125">
+              <caret line="13" column="57" selection-start-line="13" selection-start-column="57" selection-end-line="13" selection-end-column="57" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="filecache.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/utils/filecache/filecache.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="250">
+              <caret line="81" column="26" selection-start-line="81" selection-start-column="26" selection-end-line="81" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="filecache.conf" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/conf/filecache.conf">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="50">
+              <caret line="2" column="33" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="16" column="31" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="router.go" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/routers/router.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="266">
+              <caret line="27" column="38" selection-start-line="27" selection-start-column="38" selection-end-line="27" selection-end-column="38" />
               <folding>
-                <element signature="n#!!block;n#JsonResult#0" />
+                <element signature="e#17#92#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/back/category/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="750">
+              <caret line="78" column="21" selection-start-line="78" selection-start-column="21" selection-end-line="78" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -86,19 +131,19 @@
         <option value="$PROJECT_DIR$/models/CategoryModel.go" />
         <option value="$PROJECT_DIR$/views/back/category/add.html" />
         <option value="$PROJECT_DIR$/views/back/brand/index.html" />
-        <option value="$PROJECT_DIR$/views/back/category/index.html" />
-        <option value="$PROJECT_DIR$/routers/router.go" />
         <option value="$PROJECT_DIR$/views/back/category/edit.html" />
         <option value="$PROJECT_DIR$/controllers/AdminControllers/brand.go" />
         <option value="$PROJECT_DIR$/controllers/AdminControllers/category.go" />
         <option value="$PROJECT_DIR$/controllers/AdminControllers/index.go" />
         <option value="$PROJECT_DIR$/conf/app.conf" />
-        <option value="$PROJECT_DIR$/conf/filecache.conf" />
         <option value="$PROJECT_DIR$/utils/filecache.go" />
         <option value="$PROJECT_DIR$/sysinit/init.go" />
         <option value="$PROJECT_DIR$/main.go" />
-        <option value="$PROJECT_DIR$/utils/filecache/filecache.go" />
         <option value="$PROJECT_DIR$/controllers/AdminControllers/base.go" />
+        <option value="$PROJECT_DIR$/utils/filecache/filecache.go" />
+        <option value="$PROJECT_DIR$/conf/filecache.conf" />
+        <option value="$PROJECT_DIR$/views/back/category/index.html" />
+        <option value="$PROJECT_DIR$/routers/router.go" />
       </list>
     </option>
   </component>
@@ -112,9 +157,9 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="232" />
-    <option name="y" value="33" />
-    <option name="width" value="1060" />
+    <option name="x" value="484" />
+    <option name="y" value="40" />
+    <option name="width" value="880" />
     <option name="height" value="703" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -123,7 +168,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -134,18 +178,26 @@
             <path>
               <item name="sqlx" type="b2602c69:ProjectViewProjectNode" />
               <item name="sqlx" type="462c0819:PsiDirectoryNode" />
-              <item name="cache" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="sqlx" type="b2602c69:ProjectViewProjectNode" />
               <item name="sqlx" type="462c0819:PsiDirectoryNode" />
-              <item name="cache" type="462c0819:PsiDirectoryNode" />
-              <item name="filecache" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="back" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sqlx" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sqlx" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="back" type="462c0819:PsiDirectoryNode" />
+              <item name="category" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -198,8 +250,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17927383" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19213313" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.40166414" side_tool="true" weight="0.32952693" />
       <window_info anchor="right" id="Database" order="3" />
@@ -207,7 +260,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.017944535" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" sideWeight="0.59833586" visible="true" weight="0.12091503" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" sideWeight="0.59833586" visible="true" weight="0.3611111" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -231,13 +284,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/views/back/layout/footer.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/back/layout/header.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="350">
@@ -394,13 +440,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/back/category/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="37" column="40" selection-start-line="37" selection-start-column="40" selection-end-line="37" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../github.com/astaxie/beego/context/context.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="787">
@@ -436,16 +475,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routers/router.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="27" column="108" selection-start-line="27" selection-start-column="108" selection-end-line="27" selection-end-column="108" />
-          <folding>
-            <element signature="e#17#92#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controllers/AdminControllers/upload.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -464,9 +493,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
-          <folding>
-            <element signature="e#26#122#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -474,9 +500,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="97">
           <caret line="77" column="5" selection-start-line="77" selection-start-column="5" selection-end-line="77" selection-end-column="5" />
-          <folding>
-            <element signature="e#628#683#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -501,13 +524,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../github.com/astaxie/beego/config.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="782">
-          <caret line="424" column="16" selection-start-line="424" selection-start-column="16" selection-end-line="424" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/model.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
@@ -522,27 +538,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="6" column="19" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../github.com/astaxie/beego/cache/file.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="122" column="21" selection-start-line="122" selection-start-column="21" selection-end-line="122" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/filecache/filecache.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1025">
-          <caret line="53" column="1" lean-forward="true" selection-start-line="53" selection-start-column="1" selection-end-line="53" selection-end-column="1" />
-          <folding>
-            <element signature="e#15#87#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -556,24 +555,66 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/conf/filecache.conf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="33" lean-forward="true" selection-start-column="33" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cache/filecache/d40176705ba1db417c17f3fa19c2e71a">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3875" />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../github.com/astaxie/beego/config.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="34" column="4" selection-start-line="34" selection-start-column="4" selection-end-line="34" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../github.com/astaxie/beego/context/input.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1169">
+          <caret line="291" column="25" selection-start-line="291" selection-start-column="25" selection-end-line="291" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/controllers/AdminControllers/base.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="27" column="19" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
+        <state relative-caret-position="125">
+          <caret line="13" column="57" selection-start-line="13" selection-start-column="57" selection-end-line="13" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="16" column="31" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/filecache/filecache.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="81" column="26" selection-start-line="81" selection-start-column="26" selection-end-line="81" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/conf/filecache.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="2" column="33" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/back/category/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="750">
+          <caret line="78" column="21" selection-start-line="78" selection-start-column="21" selection-end-line="78" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routers/router.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="27" column="38" selection-start-line="27" selection-start-column="38" selection-end-line="27" selection-end-column="38" />
           <folding>
-            <element signature="n#!!block;n#JsonResult#0" />
+            <element signature="e#17#92#0" expanded="true" />
           </folding>
         </state>
       </provider>
