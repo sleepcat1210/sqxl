@@ -1,14 +1,13 @@
 package AdminControllers
 
 import (
-	"github.com/astaxie/beego"
 	"sqlx/models"
 	"github.com/astaxie/beego/orm"
 	"strings"
 )
 
 type CategoryController struct {
-	beego.Controller
+	BaseController
 }
 //商品分类
 func(c *CategoryController)GetList(){
@@ -114,6 +113,7 @@ func(c *CategoryController)Edit(){
 	c.TplName="back/category/edit.html"
 }
 func(c *CategoryController)UpdateCategory(){
+
 	category_name :=c.GetString("category_name")
 	category_status,_:=c.GetInt8("category_status")
 	category_order,_ :=c.GetInt("category_order")

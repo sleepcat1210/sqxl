@@ -1,7 +1,6 @@
 package AdminControllers
 
 import (
-	"github.com/astaxie/beego"
 	"sqlx/utils"
 	"github.com/astaxie/beego/orm"
 	"sqlx/models"
@@ -9,7 +8,7 @@ import (
 )
 
 type BrandController struct {
-	beego.Controller
+	BaseController
 }
 func(b *BrandController)GetList(){
 	var brands []models.Brand
