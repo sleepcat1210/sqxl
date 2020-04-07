@@ -30,4 +30,7 @@ func admin(){
 	beego.Router("/admin/goodstype/add",&AdminControllers.GoodsTypeController{},"get:GetAdd;post:AddType")
 	beego.Router("/admin/attr",&AdminControllers.AttributeController{},"get:GetList")
 	beego.Router("/admin/attr/add",&AdminControllers.AttributeController{},"get:Add;post:AddAttr")
+	//商品
+	beego.Router("/admin/goods",&AdminControllers.GoodsController{},"get:GetList")
+	beego.Router("/admin/goods/add",&AdminControllers.GoodsController{},"get:AddShow")
 }
