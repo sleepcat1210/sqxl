@@ -9,7 +9,7 @@
             <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius">
             <i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
         </span>
-            <span class="l pl-5"><a href="javascript:;" onclick="goodstype_add('添加属性','/admin/goodstype/add','800','500')" class="btn btn-secondary radius">
+            <span class="l pl-5"><a href="javascript:;" onclick="attr_add('添加属性','/admin/attr/add?typeid={{.typeid}}','800','500')" class="btn btn-secondary radius">
             <i class="Hui-iconfont">&#xe600;</i> 添加属性</a>
         </span>
         </div>
@@ -22,20 +22,23 @@
                 <th width="70">ID</th>
                 <th width="100">属性名称</th>
                 <th width="100">所属类型</th>
+                <th width="100">属性类型</th>
+                <th width="100">属性方式</th>
+                <th width="100">属性值</th>
                 <th width="50">操作</th>
             </tr>
             </thead>
             <tbody>
-
+            {{range .attributes}}
             <tr class="text-c">
-                <td><input name="delid" type="checkbox" value="{{.TypeId}}"></td>
-                <td>{{.TypeId}}</td>
-                <td>{{.TypeName}}</td>
-                <td>{{.Category.CategoryName}}</td>
+                <td><input name="delid" type="checkbox" value="{{.AttrId}}"></td>
+                <td>{{.AttrId}}</td>
+                <td>{{.AttrName}}</td>
+                <td>{{.AttrType}}</td>
+                <td>{{.AttrInputType}}</td>
+                <td>{{.AttrValues}}</td>
+                <td>{{.GoodsType.TypeName}}</td>
                 <td class="f-14 product-brand-manage">
-                    <a style="text-decoration:none" href="/admin/attr" title="属性列表" class="btn btn-secondary radius">
-                        属性列表
-                    </a>
                     <a style="text-decoration:none" onClick="category_edit('分类编辑','/admin/category/edit','')" href="javascript:;" title="编辑">
                         <i class="Hui-iconfont">&#xe6df;</i>
                     </a>
@@ -43,7 +46,7 @@
                         <i class="Hui-iconfont">&#xe6e2;</i></a>
                 </td>
             </tr>
-
+            {{end}}
             </tbody>
         </table>
     </div>
@@ -63,7 +66,7 @@
 
     });
     //添加
-    function goodstype_add(title,url,w,h){
+    function attr_add(title,url,w,h){
         layer_show(title,url,w,h);
     }
     //添加

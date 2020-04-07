@@ -33,7 +33,7 @@
                 <td>{{.TypeName}}</td>
                 <td>{{.Category.CategoryName}}</td>
                 <td class="f-14 product-brand-manage">
-                    <a style="text-decoration:none" href="/admin/attr" title="属性列表" class="btn btn-secondary radius">
+                    <a style="text-decoration:none" href="/admin/attr?typeid={{.TypeId}}" title="属性列表" class="btn btn-secondary radius">
                         属性列表
                     </a>
                     <a style="text-decoration:none" onClick="category_edit('分类编辑','/admin/category/edit','')" href="javascript:;" title="编辑">
