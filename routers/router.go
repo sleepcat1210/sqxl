@@ -26,4 +26,7 @@ func admin(){
 	beego.Router("/admin/category/delete",&AdminControllers.CategoryController{},"get:Del")
 	beego.Router("/admin/category/delall",&AdminControllers.CategoryController{},"get:DelAll")
 	beego.Router("/admin/category/edit",&AdminControllers.CategoryController{},"get:Edit;post:UpdateCategory")
+	beego.Router("/admin/goodstype",&AdminControllers.GoodsTypeController{},"get:GetList")
+	beego.Router("/admin/goodstype/add",&AdminControllers.GoodsTypeController{},"get:GetAdd;post:AddType")
+	beego.Router("/admin/attr",&AdminControllers.AttributeController{},"get:GetList")
 }

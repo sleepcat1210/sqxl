@@ -2,7 +2,6 @@ package AdminControllers
 
 import (
 	"github.com/astaxie/beego"
-	"encoding/json"
 	"io"
 	"sqlx/utils/filecache"
 )
@@ -37,11 +36,6 @@ func(b *BaseController)JsonResult(errcode int,errmsg string,data ...interface{})
 		if len(data)>0 && data[0]!=nil{
 			jsonData["data"]=data[0]
 		}
-		returnJson,err:=json.Marshal(jsonData)
-		if err !=nil{
-			beego.Error(err)
-		}
-		b.Ctx.ResponseWriter.Header().Set("Content-Type", "application/json; charset=utf-8")
-		io.WriteString(b.Ctx.ResponseWriter,string(returnJson))
-		b.StopRun()
+	b.Data["json"] = jsonData
+	b.ServeJSON()
 }

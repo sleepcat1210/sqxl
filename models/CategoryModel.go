@@ -12,6 +12,7 @@ type Category struct {
 	CategoryLogo string `orm:"size(100);description(分类logo)";json:"category_logo"`
 	CategoryOrder int	`orm:"description(分类排序)";json:"category_order"`
 	CategoryStatus int8 `orm:"default(0);description(分类状态0禁用1启用)";json:"category_status"`
+	GoodsType []*GoodsType `orm:"reverse(many)"`
 
 }
 type CategoryList struct{
