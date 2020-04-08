@@ -4,7 +4,6 @@ import (
 	"sqlx/models"
 	"encoding/json"
 	"strings"
-	"fmt"
 )
 
 type GoodsController struct {
@@ -16,7 +15,13 @@ func(this *GoodsController)GetList(){
 //添加产品
 func(this *GoodsController)AddShow(){
 	//获取商品固有属性
-    attr:=new(models.Attribute)
+
+
+
+	this.TplName="back/goods/add.html"
+}
+func(this *GoodsController)GetAttr(){
+	attr:=new(models.Attribute)
 	attrs,_:=attr.GetAttr(0)
 	attrm,_:=attr.GetAttr(1)
 	arrMap:=make(map[int]map[string]interface{})
@@ -29,9 +34,7 @@ func(this *GoodsController)AddShow(){
 		}
 		arrMap[k]=attrss
 	}
-
-	fmt.Println(arrMap)
 	this.Data["attrMap"]=arrMap
-    this.Data["attrs"]=attrs
-	this.TplName="back/goods/add.html"
+	this.Data["attrs"]=attrs
+	this.TplName="back/goods/attr.html"
 }
