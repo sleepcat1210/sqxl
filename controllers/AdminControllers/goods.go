@@ -31,9 +31,9 @@ func(this *GoodsController)AddShow(){
 	this.TplName="back/goods/add.html"
 }
 func(this *GoodsController)GetAttr(){
+	typeid,_:=this.GetInt64("typeid")
 	attr:=new(models.Attribute)
-	attrs,_:=attr.GetAttr(0)
-	attrm,_:=attr.GetAttr(1)
+	attrm,_:=attr.GetAttr(typeid)
 	arrMap:=make(map[int]map[string]interface{})
 	for k,v:=range attrm{
 		j, _ := json.Marshal(v)
@@ -45,7 +45,6 @@ func(this *GoodsController)GetAttr(){
 		arrMap[k]=attrss
 	}
 	this.Data["attrMap"]=arrMap
-	this.Data["attrs"]=attrs
 	this.TplName="back/goods/attr.html"
 }
 //添加商品
@@ -91,4 +90,20 @@ func(this *GoodsController)AddGoods(){
 	}else{
 		this.JsonResult(200,"添加成功")
 	}
+}
+//设置商品属性
+func(this *GoodsController)SetAddr(){
+	goods_id,_:=this.GetInt64("goods_id")
+	o:=orm.NewOrm()
+	goods:=models.Goods{
+		GoodsId:goods_id,
+	}
+	o.Read(&goods,"GoodsId")
+	cateType:=[]models.GoodsType{}
+	o.QueryTable("SqxlGoodsType").Filter("Category",goods.Category).All(&cateType)
+	this.Data["cateType"]=cateType
+	this.TplName="back/goods/setattr.html"
+}
+func(this *GoodsController)SetSpu(){
+
 }

@@ -26,8 +26,8 @@ func(this *Attribute)GetList(typeId int64)(attribute []Attribute,err error){
 	return
 }
 //获取属性
-func(this *Attribute)GetAttr(attr_type int)(attribute []Attribute,err error){
+func(this *Attribute)GetAttr(typeid int64)(attribute []Attribute,err error){
 	o:=orm.NewOrm()
-	_,err=o.QueryTable("SqxlAttribute").RelatedSel("GoodsType").Filter("AttrType",attr_type).All(&attribute)
+	_,err=o.QueryTable("SqxlAttribute").Filter("GoodsType__TypeId",typeid).OrderBy("AttrType").All(&attribute)
 	return
 }

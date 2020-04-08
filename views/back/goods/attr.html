@@ -1,21 +1,37 @@
-{{range .attrs}}
-<div class="row cl">
-    <label class="form-label col-xs-4 col-sm-3">{{.AttrName}}：</label>
-    <div class="formControls col-xs-8 col-sm-9">
-        <input type="text" class="input-text" value="" placeholder="" id="type_name" name="attr0[{{.AttrId}}][]">
-    </div>
-</div>
-{{end}}
 {{range $kk,$val:=.attrMap}}
-<div class="row cl">
-    <label class="form-label col-xs-4 col-sm-3">{{$val.AttrName}}：</label>
-    <div class="formControls col-xs-8 col-sm-9">
-    {{range $k,$v:= $val.AttrValues}}
-        <div class="check-box">
-            <input type="checkbox" id="checkbox-2" name="attr1[{{$val.AttrId}}][]">
-            <label for="checkbox-2">{{$v}}</label>
-        </div>
-    {{end}}
-    </div>
-</div>
+        {{if compare $val.AttrType 0}}
+            {{if compare $val.AttrInputType 1}}
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3">{{$val.AttrName}}：</label>
+                    <div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
+                            <select name="attr0[{{$val.AttrId}}][]" class="select">
+                                <option value="">请选择{{$val.AttrName}}</option>
+                            {{range $k,$v:= $val.AttrValues}}
+                                <option value="{{$v}}">{{$v}}</option>
+                            {{end}}
+                            </select>
+                            </span>
+                    </div>
+                </div>
+            {{else}}
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3">{{$val.AttrName}}：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        <input type="text" class="input-text" value="" placeholder="" id="type_name" name="attr0[{{$val.AttrId}}][]">
+                    </div>
+                </div>
+        {{end}}
+        {{else}}
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-3">{{$val.AttrName}}：</label>
+                <div class="formControls col-xs-8 col-sm-9">
+                {{range $k,$v:= $val.AttrValues}}
+                    <div class="check-box">
+                        <input type="checkbox" id="checkbox-2" name="attr1[{{$val.AttrId}}][]" value="{{$v}}">
+                        <label for="checkbox-2">{{$v}}</label>
+                    </div>
+                {{end}}
+                </div>
+            </div>
+         {{end}}
 {{end}}
