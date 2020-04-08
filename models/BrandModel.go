@@ -1,6 +1,9 @@
 package models
 
-import "time"
+import (
+	"time"
+	"github.com/astaxie/beego/orm"
+)
 
 type Brand struct {
 	BrandId int64 `orm:"auto;pk";json:"brand_id"`
@@ -18,4 +21,10 @@ type Brand struct {
 }
 func (b *Brand) TableEngine() string {
 	return "INNODB"
+}
+func(this *Brand)GetList()(brands []*Brand,err error){
+	o:=orm.NewOrm()
+	brands=[]*Brand{}
+	_,err=o.QueryTable("SqxlBrand").All(&brands)
+	return
 }

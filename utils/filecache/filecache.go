@@ -6,7 +6,6 @@ import (
 	"errors"
 	"time"
 	"strings"
-	"fmt"
 )
 
 var(
@@ -79,7 +78,6 @@ func cacheKey(controllerName,actionName string,paramArray ...map[string]string)s
 				rtnstr =rtnstr +"_"+strings.ReplaceAll(v,":","")+"_"+paramArray[0][v]
 			}
 		}
-		fmt.Println(rtnstr)
 		return rtnstr
 	}
 	return ""
