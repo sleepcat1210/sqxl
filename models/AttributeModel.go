@@ -9,6 +9,7 @@ type Attribute struct {
 	AttrInputType int	`orm:"default(0);description(0手工录入1列表)";json:"attr_input_type"`
 	AttrValues string `orm:"size(100);description(可选值列表)";json:"attr_values"`
 	GoodsType *GoodsType `orm:"rel(fk);description:(类型)";json:"type_id"`
+	GoodsAttr []*GoodsAttr `orm:"reverse(many)"`
 }
 
 func(this *Attribute)Add(attr_name string,attr_type int,attr_input_type int,attr_values string,GoodsType *GoodsType)(int64,error){

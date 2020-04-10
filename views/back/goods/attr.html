@@ -4,7 +4,8 @@
                 <div class="row cl">
                     <label class="form-label col-xs-4 col-sm-3">{{$val.AttrName}}：</label>
                     <div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
-                            <select name="attr0[{{$val.AttrId}}][]" class="select">
+                            <select name="attr[0-{{$val.AttrId}}]" class="select">
+                            {{/*<select name="attr[{{$val.AttrId}}][]" class="select">*/}}
                                 <option value="">请选择{{$val.AttrName}}</option>
                             {{range $k,$v:= $val.AttrValues}}
                                 <option value="{{$v}}">{{$v}}</option>
@@ -17,7 +18,8 @@
                 <div class="row cl">
                     <label class="form-label col-xs-4 col-sm-3">{{$val.AttrName}}：</label>
                     <div class="formControls col-xs-8 col-sm-9">
-                        <input type="text" class="input-text" value="" placeholder="" id="type_name" name="attr0[{{$val.AttrId}}][]">
+                        <input type="text" class="input-text" value="" placeholder="" id="type_name" name="attr[0-{{$val.AttrId}}]">
+                        {{/*<input type="text" class="input-text" value="" placeholder="" id="type_name" name="attr[{{$val.AttrId}}][]">*/}}
                     </div>
                 </div>
         {{end}}
@@ -27,7 +29,8 @@
                 <div class="formControls col-xs-8 col-sm-9">
                 {{range $k,$v:= $val.AttrValues}}
                     <div class="check-box">
-                        <input type="checkbox" id="checkbox-2" name="attr1[{{$val.AttrId}}][]" value="{{$v}}">
+                        <input type="checkbox" id="checkbox-2" name="attr[1-{{$val.AttrId}}-{{$v}}]" value="{{$v}}">
+                        {{/*<input type="checkbox" id="checkbox-2" name="attr[{{$val.AttrId}}][]" value="{{$v}}">*/}}
                         <label for="checkbox-2">{{$v}}</label>
                     </div>
                 {{end}}

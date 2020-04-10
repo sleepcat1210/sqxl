@@ -8,6 +8,7 @@ type GoodsType struct {
 	Category	*Category `orm:"rel(fk);description:(所属分类)";json:"category_id"`
 	Attribute []*Attribute `orm:"reverse(many)"`
 	Goods []*Goods `orm:"reverse(many)"`
+	GoodsAttr []*GoodsAttr `orm:"reverse(many)"`
 }
 
 //添加

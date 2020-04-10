@@ -3,6 +3,7 @@
 <body>
 <article class="page-container">
 <form  class="form form-horizontal" id="form-attr-add" method="post">
+    <input type="hidden" name="goods_id" value="{{.goods_id}}">
 <div class="row cl">
     <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>选择商品类型：</label>
     <div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
@@ -18,10 +19,13 @@
 <div id="attr">
 
 </div>
-    <div class="row cl">
+    <div class="row cl ">
         <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-            <input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;生成Spu&nbsp;&nbsp;">
+            <input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;生成Sku&nbsp;&nbsp;">
         </div>
+    </div>
+    <div id="sku" class="row cl">
+
     </div>
 </form>
 </article>
@@ -130,9 +134,6 @@
     <script>
         $(function(){
             $("#form-attr-add").validate({
-                rules:{
-
-                },
                 onkeyup:false,
                 focusCleanup:true,
                 success:"valid",
@@ -141,15 +142,10 @@
                     $(form).ajaxSubmit({
                         type: 'post',
                         url: "/admin/goods/setattr" ,
-                        success: function(data){
-                            // if(data.code==200){
-                            //     layer.msg('添加成功!',{icon:1,time:3000},function () {
-                            //         parent.$('.btn-refresh').click();
-                            //         parent.layer.close(index);
-                            //     });
-                            // }else{
-                            //     layer.msg('添加失败!',{icon:1,time:3000});
-                            // }
+                        dataType: 'html',
+                        success: function(data) {
+                                $("#sku").html(data)
+
                         },
                         error: function(XmlHttpRequest, textStatus, errorThrown){
                             layer.msg('error!',{icon:1,time:3000});

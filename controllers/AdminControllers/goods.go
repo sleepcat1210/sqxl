@@ -6,6 +6,7 @@ import (
 	"strings"
 	"github.com/astaxie/beego/orm"
 	"fmt"
+	"strconv"
 )
 
 type GoodsController struct {
@@ -102,8 +103,87 @@ func(this *GoodsController)SetAddr(){
 	cateType:=[]models.GoodsType{}
 	o.QueryTable("SqxlGoodsType").Filter("Category",goods.Category).All(&cateType)
 	this.Data["cateType"]=cateType
+	this.Data["goods_id"]=goods_id
 	this.TplName="back/goods/setattr.html"
 }
 func(this *GoodsController)SetSpu(){
+	goods_id,_:=this.GetInt64("goods_id")
+	type_id,_:=this.GetInt64("type_id")
+	attrs:=make(map[string]string,0)
+	this.Ctx.Input.Bind(&attrs,"attr")
+	var attrIds string
+	o:=orm.NewOrm()
+	o.Begin()
+	is_delete :=true
+	goods:=&models.Goods{GoodsId:goods_id}
+	goodsType:=&models.GoodsType{TypeId:type_id}
+	attr:=models.GoodsAttr{Goods:goods}
+	o.Delete(&attr,"Goods")
+	for k,v:=range attrs{
+		ks:=strings.Split(k,"-")//0-属性-
+		if len(ks[1])>0 &&v!=""{
+			if ks[0]=="1"{
+				if !strings.Contains(attrIds,ks[1]){
+					attrIds =attrIds+ks[1]+","
+				}
+			}
+			attr_id,_:=strconv.ParseInt(ks[1],10,64)
+			goodsAttr:=models.GoodsAttr{}
+			attrbute:=&models.Attribute{AttrId:attr_id}
+			goodsAttr.Attribute=attrbute
+			goodsAttr.Goods=goods
+			goodsAttr.AttrName=v
+			goodsAttr.GoodsType=goodsType
+			_,err:=o.Insert(&goodsAttr)
+			if err !=nil{
+				is_delete=false
+				o.Rollback()
+				break
+			}
+		}
+	}
+	if is_delete{
+		o.Commit()
+	}
+	attrIds=strings.TrimRight(attrIds,",")
+	attrArr:=strings.Split(attrIds,",")
+	attrbutes:=[]models.Attribute{}
+	o.QueryTable("SqxlAttribute").Filter("AttrId__in",attrArr).OrderBy("AttrId").All(&attrbutes)
+	goods_attrs:=make(map[int][]models.GoodsAttr)
+	var arrindex int=0
+	for _,val:=range attrbutes{
+		GoodsAttr:=[]models.GoodsAttr{}
+		qs:=o.QueryTable("SqxlGoodsAttr")
+		qs.RelatedSel("Attribute").Filter("Attribute__AttrId",val.AttrId).Filter("Goods",goods).OrderBy("GoodsAttrId").All(&GoodsAttr)
+		goods_attrs[arrindex]=GoodsAttr
+		arrindex++
 
+	}
+	goodsattr:=this.GetSku(goods_attrs,0,2)
+	fmt.Println(goodsattr)
+
+	//fmt.Println(goodsattr)
+	this.Data["goods_attrs"]=goodsattr
+	this.Data["attrbutes"]=attrbutes
+	this.TplName="back/goods/spu.html"
+}
+func(this *GoodsController)GetSku(goodsAttr map[int][]models.GoodsAttr,offset int,index int)(goodsattr map[int][]models.GoodsAttr){
+		//lenattrType:=len(goods_attrs)
+		arrIndex:=len(goodsAttr)//属性分类长度
+		goodsattr=make(map[int][]models.GoodsAttr)
+		var kk int =0
+		for  i:=0;i<index;i++{
+			for _,val:=range goodsAttr[offset]{
+
+				if offset<arrIndex-1{
+					offset++
+				}
+				goodsattr[index][kk]=append(goodsattr[index][kk],val)
+				fmt.Println(goodsattr)
+				//goodsattr=append(goodsattr,this.GetSku(goodsAttr,offset ,index)...)
+			}
+			kk++
+		}
+
+		return goodsattr
 }

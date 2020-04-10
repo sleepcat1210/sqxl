@@ -1,0 +1,28 @@
+<table class="table table-border table-bordered table-bg table-sort">
+    <thead>
+    <tr class="text-c">
+        {{range .attrbutes}}
+            <th>{{.AttrName}}</th>
+        {{end}}
+        <th>图片</th>
+        <th>售价</th>
+        <th>成本价</th>
+        <th>原价</th>
+        <th>库存</th>
+        <th>操作</th>
+    </tr>
+    {{range $k,$v:= .goods_attrs}}
+    <tr class="text-c">
+        {{range $kk,$vv:=$v}}
+        <th>{{$vv.AttrName}}</th>
+        {{end}}
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+    {{end}}
+    </thead>
+</table>

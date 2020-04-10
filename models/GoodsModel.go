@@ -27,6 +27,7 @@ type Goods struct {
 	Brand *Brand `orm:"rel(fk);description(品牌)";json:"brand_id"`
 	Category *Category `orm:"rel(fk);description(商品分类)";json:"category_id"`
 	GoodsType *GoodsType `orm:"rel(fk);description(商品类型);null";json:"type_id"`
+	GoodsAttr []*GoodsAttr `orm:"reverse(many)"`
 }
 func (b *Goods) TableEngine() string {
 	return "INNODB"
