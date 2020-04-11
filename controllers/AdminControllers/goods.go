@@ -149,41 +149,43 @@ func(this *GoodsController)SetSpu(){
 	attrArr:=strings.Split(attrIds,",")
 	attrbutes:=[]models.Attribute{}
 	o.QueryTable("SqxlAttribute").Filter("AttrId__in",attrArr).OrderBy("AttrId").All(&attrbutes)
-	goods_attrs:=make(map[int][]models.GoodsAttr)
-	var arrindex int=0
+	goods_attrs:=make([][]models.GoodsAttr,0)
 	for _,val:=range attrbutes{
 		GoodsAttr:=[]models.GoodsAttr{}
 		qs:=o.QueryTable("SqxlGoodsAttr")
 		qs.RelatedSel("Attribute").Filter("Attribute__AttrId",val.AttrId).Filter("Goods",goods).OrderBy("GoodsAttrId").All(&GoodsAttr)
-		goods_attrs[arrindex]=GoodsAttr
-		arrindex++
+		goods_attrs=append(goods_attrs,GoodsAttr)
+
 
 	}
-	goodsattr:=this.GetSku(goods_attrs,0,2)
-	fmt.Println(goodsattr)
 
-	//fmt.Println(goodsattr)
-	this.Data["goods_attrs"]=goodsattr
+
+
+	skuAttr:=this.GetSku(goods_attrs)
+	fmt.Println(skuAttr)
+	this.Data["goods_attrs"]=skuAttr
 	this.Data["attrbutes"]=attrbutes
 	this.TplName="back/goods/spu.html"
 }
-func(this *GoodsController)GetSku(goodsAttr map[int][]models.GoodsAttr,offset int,index int)(goodsattr map[int][]models.GoodsAttr){
-		//lenattrType:=len(goods_attrs)
-		arrIndex:=len(goodsAttr)//属性分类长度
-		goodsattr=make(map[int][]models.GoodsAttr)
-		var kk int =0
-		for  i:=0;i<index;i++{
-			for _,val:=range goodsAttr[offset]{
-
-				if offset<arrIndex-1{
-					offset++
-				}
-				goodsattr[index][kk]=append(goodsattr[index][kk],val)
-				fmt.Println(goodsattr)
-				//goodsattr=append(goodsattr,this.GetSku(goodsAttr,offset ,index)...)
+func(this *GoodsController)GetSku(goods_attrs [][]models.GoodsAttr)([][]models.GoodsAttr){
+	arrlen:=len(goods_attrs)//列
+	sku:=make([][]models.GoodsAttr,0)
+	for _,val :=range goods_attrs[0] {
+		temps := make([]models.GoodsAttr, 0)
+		temps = append(temps,val)
+		sku =append(sku,temps)
+	}
+	for i:=0;i<arrlen-1;i++{
+		skuarr:=make([][]models.GoodsAttr,0)
+		for _,val:=range sku{//绿色 白色 黄色
+			for _,vals :=range goods_attrs[i+1]{//纯棉 丝绸
+				temp:=make([]models.GoodsAttr,0)
+				temp=append(temp,val...)//白色 纯棉
+				temp=append(temp,vals)
+				skuarr=append(skuarr,temp)
 			}
-			kk++
 		}
-
-		return goodsattr
+		sku=skuarr
+	}
+	return sku
 }
