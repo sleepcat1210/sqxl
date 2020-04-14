@@ -155,14 +155,9 @@ func(this *GoodsController)SetSpu(){
 		qs:=o.QueryTable("SqxlGoodsAttr")
 		qs.RelatedSel("Attribute").Filter("Attribute__AttrId",val.AttrId).Filter("Goods",goods).OrderBy("GoodsAttrId").All(&GoodsAttr)
 		goods_attrs=append(goods_attrs,GoodsAttr)
-
-
 	}
-
-
-
 	skuAttr:=this.GetSku(goods_attrs)
-	fmt.Println(skuAttr)
+	fmt.Println(goods_attrs)
 	this.Data["goods_attrs"]=skuAttr
 	this.Data["attrbutes"]=attrbutes
 	this.TplName="back/goods/spu.html"

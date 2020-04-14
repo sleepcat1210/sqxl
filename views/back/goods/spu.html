@@ -14,14 +14,16 @@
     {{range $k,$v:= .goods_attrs}}
     <tr class="text-c">
         {{range $kk,$vv:=$v}}
-        <th>{{$vv.AttrName}}</th>
+        <th width="10%">{{$vv.AttrName}}</th>
         {{end}}
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
+            <th width="10%" ><i class="Hui-iconfont" style="font-size: 30px">&#xe612;</i></th>
+        <th width="10%"><input type="text" name="shop_price" class="input-text radius size-S"></th>
+        <th width="10%"><input type="text" name="cost_price" class="input-text radius size-S"></th>
+            <th width="10%"><input type="text" name="old_price" class="input-text radius size-S"></th>
+        <th width="10%"><input type="text" name="store_count" class="input-text radius size-S"></th>
+        <th width="10%">
+            <div class="btn btn-primary size-MINI radius" onclick="delth(this)">删除</div>
+        </th>
     </tr>
     {{end}}
     </thead>
